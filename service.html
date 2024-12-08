@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Статистика по сервисам</title>
+  <link rel="stylesheet" href="static/css/service.css">
+</head>
+<body>
+  <!-- Заголовок страницы -->
+  <header>
+    <h1>Статистика по выбранному сервису</h1>
+  </header>
+
+  <!-- Форма для выбора сервиса -->
+  <section>
+    <label for="serviceSelect">Выберите сервис:</label>
+    <select id="serviceSelect" onchange="updateStatistics()">
+      <option value="service1">Сервис 1</option>
+      <option value="service2">Сервис 2</option>
+      <option value="service3">Сервис 3</option>
+    </select>
+  </section>
+
+  <!-- Таблица с данными о сотрудниках -->
+  <section id="employeeTableSection">
+    <h2>Сотрудники выбранного сервиса</h2>
+    <table id="employeeTable">
+      <thead>
+        <tr>
+          <th>Имя</th>
+          <th>Должность</th>
+          <th>Опыт (годы)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Данные будут добавлены с помощью JavaScript -->
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Гистограмма прибыли -->
+  <section id="profitChartSection">
+    <h2>Гистограмма прибыли</h2>
+    <div id="profitChart" class="chart">
+      <!-- Гистограмма будет добавлена с помощью JavaScript -->
+    </div>
+  </section>
+
+  <script src="static/js/service.js"></script>
+</body>
+</html>
