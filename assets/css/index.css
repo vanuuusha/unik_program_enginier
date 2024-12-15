@@ -1,0 +1,122 @@
+/* Общие стили */
+body {
+    font-family: 'Arial', sans-serif; /* Шрифт, похожий на Facebook */
+    background-color: #f7f7f7; /* Светлый фон для страницы */
+    color: #1c1e21; /* Темный цвет текста */
+    margin: 0;
+    padding: 0;
+}
+
+/* Навигационная панель */
+nav {
+    background-color: #3b5998; /* Темно-синий фон */
+    padding: 10px 20px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav a {
+    color: #ffffff; /* Белый цвет текста */
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline; /* Подчеркивание при наведении */
+}
+
+/* Основной контейнер */
+#about {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff; /* Белый фон для контента */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); /* Легкая тень */
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+/* Заголовки */
+h1, h2 {
+    color: #3b5998; /* Темно-синий для заголовков */
+}
+
+h2 {
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+/* Списки */
+ol, ul {
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+ul {
+    list-style-type: disc;
+}
+
+ol {
+    list-style-type: upper-roman;
+}
+
+/* Стили для таблиц */
+.definition-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 14px;
+    color: #1c1e21;
+    text-align: left;
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    border-radius: 8px;
+}
+
+.definition-table thead th {
+    background-color: #dfe3ee; /* Светло-серый фон */
+    padding: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid #ccc;
+}
+
+.definition-table tbody td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #ddd;
+    vertical-align: middle;
+}
+
+.definition-table tbody tr:hover {
+    background-color: #f0f2f5;
+}
+
+.definition-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Подвал */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #3b5998; /* Темно-синий фон */
+    color: white;
+    font-size: 14px;
+}
+
+footer p {
+    margin: 0;
+}
