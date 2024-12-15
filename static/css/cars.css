@@ -103,6 +103,6 @@ select {
     margin-top: 10px; /* Добавляем отступ сверху */
 }
 
-.car_info {
+#car_info {
     display: none;
 }

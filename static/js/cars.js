@@ -8,7 +8,7 @@ const carBrandSelect = document.getElementById("car-brand");
 const brandHistory = document.getElementById("brand-history");
 const priceTableBody = document.querySelector("#price-table tbody");
 const carModelSelect = document.querySelector("#car-model")
-const car_info = document.querySelector(".car-info");
+const car_info = document.querySelector("#car_info");
 
 // Fetch and populate car brands
 async function fetchCarBrands() {
@@ -52,6 +52,23 @@ async function fetchCarModels(brand) {
     }
 }
 
+function set_car_info(car) {
+    const name_block = car_info.querySelector('.car_info__name')
+    name_block.innerHTML = car.name;
+    
+    const brand_block = car_info.querySelector('.car_info__brand')
+    brand_block.innerHTML = car.brand;
+
+    const realese_block = car_info.querySelector('.car_info__realese')
+    realese_block.innerHTML = car.realese_date;
+
+    const price_block = car_info.querySelector('.car_info__price')
+    price_block.innerHTML = car.price;
+
+    const description_block = car_info.querySelector('.car_info__description')
+    description_block.innerHTML = car.description;
+}
+
 async function fetchCarInfo(name) {
     try {
         const { data, error } = await supabaseClient
@@ -62,24 +79,75 @@ async function fetchCarInfo(name) {
         if (error) throw error;
 
         const car = data[0];
-        const name_block = car_info.querySelector('.car_info__name')
-        name_block.innerHTML = car.name;
-        
-        const brand_block = car_info.querySelector('.car_info__brand')
-        brand_block.innerHTML = car.brand;
-
-        const realese_block = car_info.querySelector('.car_info__realese')
-        realese_block.innerHTML = car.brand;
-
-        const price_block = car_info.querySelector('.car_info__price')
-        price_block.innerHTML = car.price;
-
-        const description_block = car_info.querySelector('.car_info__description')
-        description_block.innerHTML = car.brand;
+        set_car_info(car)
 
     } catch (error) {
         console.error("Error fetching car models:", error);
     }
+}
+
+async function fetchAndPopulateTable(brand) {
+    try {
+        let query = supabaseClient.from("cars").select("name, realese_date, price");
+
+        if (brand) {
+            query = query.eq("brand", brand); // Добавляем фильтрацию по бренду
+        }
+
+        const { data, error } = await query;
+
+        if (error) {
+            throw new Error(error.message);
+        }
+
+        const tableBody = document.querySelector('#price-table tbody');
+        tableBody.innerHTML = ''; 
+
+        if (data && data.length > 0) {
+            data.forEach(row => {
+                const tr = document.createElement('tr');
+                const tdModel = document.createElement('td');
+                tdModel.textContent = row.name;
+
+                const tdReleaseDate = document.createElement('td');
+                tdReleaseDate.textContent = row.realese_date;
+
+                const tdPrice = document.createElement('td');
+                tdPrice.textContent = row.price;
+
+                tr.appendChild(tdModel);
+                tr.appendChild(tdReleaseDate);
+                tr.appendChild(tdPrice);
+                tableBody.appendChild(tr);
+            });
+        } else {
+            const tr = document.createElement('tr');
+            const td = document.createElement('td');
+            td.colSpan = 3;
+            td.textContent = 'No cars available.';
+            tr.appendChild(td);
+            tableBody.appendChild(tr);
+        }
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+}
+
+async function fetchBrandsHistory(brand) {
+    if (brand) {
+        try {
+            const {data, error} = await supabaseClient.from("brands").select("history").eq('brand', brand);
+            if (error) {
+                throw new Error(error.message);
+            }
+            brandHistory.innerHTML = data[0]['history']; 
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    } else {
+        brandHistory.innerHTML = "Select a brand to see its history."; 
+    }
+
 }
 
 carBrandSelect.addEventListener("change", (event) => {
@@ -88,8 +156,14 @@ carBrandSelect.addEventListener("change", (event) => {
     if (selectedBrand) {
         carModelSelect.style.display = "inline-block";
         fetchCarModels(selectedBrand); 
+        fetchAndPopulateTable(selectedBrand);
+        fetchBrandsHistory(selectedBrand);
     } else {
+        carModelSelect.style.display = "none";
         carModelSelect.innerHTML = '<option value="">-- Choose a Model --</option>';
+        car_info.style.display = "none";
+        fetchAndPopulateTable();
+        fetchBrandsHistory();
     }
 });
 
@@ -97,12 +171,14 @@ carModelSelect.addEventListener("change", (event) => {
     const selectedModel = event.target.value;
     
     if (selectedModel) {
-        carModelSelect.style.display = "block";
+        car_info.style.display = "block";
         fetchCarInfo(selectedModel); 
     } else {
-        // carModelSelect.innerHTML = '<option value="">-- Choose a Model --</option>';
+        car_info.style.display = "none";
+        set_car_info({name: '', model: '', realese_date: '', description: '', brand: '', price: ''})
     }
 });
 
 
 fetchCarBrands();
+fetchAndPopulateTable();
