@@ -76,10 +76,16 @@ function draw_hist(data, html_tag) {
     const gradient = ctx.createLinearGradient(0, 0, 0, 400); // Создаем градиент от верхнего к нижнему краю
     gradient.addColorStop(0, 'rgba(244, 162, 235, 1)'); // Цвет на верхнем краю
     gradient.addColorStop(1, 'rgba(54, 162, 235, 1)');  // Цвет на нижнем краю
+
+    const months = [
+        "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", 
+        "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"
+    ];
+
     charts.push(new Chart(ctx, {
         type: 'bar', // Тип графика - столбчатая гистограмма
         data: {
-          labels: Array.from({ length: 12 }, (_, i) => `Месяц ${i + 1}`), // Метки для оси X (например, месяцы)
+          labels: months, // Используем массив с месяцами
           datasets: [{
             label: 'Значения',
             data: data, // Массив данных для гистограммы
@@ -89,10 +95,44 @@ function draw_hist(data, html_tag) {
           }]
         },
         options: {
-            responsive: true,
+            responsive: true, // Адаптивность графика
+            scales: {
+                x: {
+                    ticks: {
+                        autoSkip: false, // Запрещаем пропуск меток на оси X
+                        maxRotation: 45, // Ограничиваем максимальный угол поворота
+                        minRotation: 45, // Устанавливаем угол поворота для всех меток
+                    },
+                    grid: {
+                        display: false, // Отключаем сетку на оси X
+                    },
+                },
+                y: {
+                    beginAtZero: true, // Начинаем ось Y с нуля
+                }
+            },
+            // Автоматическое масштабирование столбцов
+            plugins: {
+                legend: {
+                    display: false // Отключаем легенду (если не нужна)
+                }
+            },
+            layout: {
+                padding: {
+                    left: 10,
+                    right: 10,
+                    top: 10,
+                    bottom: 10
+                }
+            },
+            barPercentage: 0.9, // Настройка ширины столбцов (0.9 — это 90% от доступной ширины)
+            categoryPercentage: 0.8 // Расстояние между столбцами (0.8 — 80% от ширины категории)
         }
-      }));
+    }));
 }
+
+
+
 
 function clear_hist() {
     charts.forEach(chart => {chart.destroy();})
@@ -101,19 +141,28 @@ function clear_hist() {
 
 async function draw_hist_wrapper(serviceId) {
     try {
+        // Получаем данные о выбранном сервисе
         const { data, error } = await supabaseClient
             .from("service")  // Таблица с сервисами
-            .select("qty, profits")
+            .select("name, qty, profits")
             .eq('id', serviceId);
 
         if (error) throw error;
-        draw_hist(data[0].qty, order_hist);
+
+        // Обновляем заголовок с названием сервиса
+        const serviceName = data[0].name;
+        document.getElementById("profit-chart-title").innerText = `Гистограмма прибыли для ${serviceName}`;
+        document.getElementById("order-chart-title").innerText = `Гистограмма заказов для ${serviceName}`;
+
+        // Отрисовываем гистограммы
         draw_hist(data[0].profits, profit_hist);
+        draw_hist(data[0].qty, order_hist);
         
     } catch (error) {
         console.error("Error fetching services:", error);
     }
 }
+
 
 
 serviceSelect.addEventListener("change", (event) => {

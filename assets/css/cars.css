@@ -1,14 +1,15 @@
+/* Общие стили */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif; /* Шрифт, как у Facebook */
+    background-color: #f7f7f7; /* Светлый фон */
+    color: #1c1e21; /* Темный цвет текста */
     margin: 0;
     padding: 0;
-    background-color: #f4f4f9;
-    color: #333;
 }
 
+/* Навигационная панель с градиентом */ 
 .navbar {
-    background-color: #333;
-    color: white;
+    background: linear-gradient(to right, #030247, #3b5998); /* Градиент от темного синего к светло-голубому */
     padding: 10px 20px;
 }
 
@@ -43,19 +44,30 @@ body {
     text-decoration: underline;
 }
 
+/* Заголовок с градиентом */
 header {
-    background-color: #444;
+    background: linear-gradient(to right, #030247, #3b5998); /* Градиент от темного синего к светло-голубому */
     color: white;
     text-align: center;
     padding: 20px 0;
 }
 
-main {
-    padding: 20px;
-    max-width: 800px;
-    margin: 0 auto;
+header h1 {
+    margin: 0;
+    font-size: 2em;
 }
 
+/* Основной контейнер с легким градиентом */
+main {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: linear-gradient(to bottom, #ffffff, #f7f7f7); /* Легкий градиент от белого к светло-серому */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); /* Тень */
+    border-radius: 8px;
+}
+
+/* Фильтры */
 .filter {
     margin-bottom: 20px;
 }
@@ -73,15 +85,26 @@ select {
     border-radius: 4px;
 }
 
+/* Информация об автомобиле */
+#car_info {
+    display: none;
+}
+
+#car_info p {
+    margin: 10px 0;
+}
+
+/* История бренда */
 .brand-history {
     margin-top: 20px;
     padding: 15px;
-    background-color: #fff;
+    background-color: #ffffff;
     border: 1px solid #ddd;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Таблица цен */
 .price-table {
     margin-top: 20px;
     width: 100%;
@@ -95,14 +118,27 @@ select {
 }
 
 .price-table th {
-    background-color: #f4f4f9;
+    background-color: #dfe3ee; /* Светло-серый фон */
 }
 
+.price-table tbody tr:hover {
+    background-color: #f0f2f5;
+}
+
+/* Отступы и скрытие селектов */
 #car-model {
     display: none;
-    margin-top: 10px; /* Добавляем отступ сверху */
+    margin-top: 10px;
 }
 
-#car_info {
-    display: none;
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #3b5998; /* Темно-синий */
+    color: white;
+    font-size: 14px;
+}
+
+footer p {
+    margin: 0;
 }

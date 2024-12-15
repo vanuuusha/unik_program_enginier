@@ -9,6 +9,16 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+    <!-- Навигационная панель -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Home</a> <!-- Ссылка на главную страницу -->
+            <ul class="nav-links">
+                <li><a href="service.html">Services</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <!-- Заголовок страницы -->
     <header>
         <h1>Статистика по выбранному сервису</h1>
@@ -43,11 +53,11 @@
 
     <section id="profitChartSection">
         <div class="hist_wrapper">
-            <h2>Гистограмма прибыли</h2>
+            <h2 id="profit-chart-title" class="chart-title">Гистограмма прибыли</h2> <!-- Уникальный ID для заголовка -->
             <canvas id="profit_hist" class="chart"></canvas>
         </div>
-        <div>
-            <h2>Гистограмма заказов</h2>
+        <div class="hist_wrapper">
+            <h2 id="order-chart-title" class="chart-title">Гистограмма заказов</h2> <!-- Уникальный ID для заголовка -->
             <canvas id="order_hist" class="chart"></canvas>
         </div>
     </section>

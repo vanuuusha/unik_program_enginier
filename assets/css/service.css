@@ -1,3 +1,4 @@
+/* Основной стиль для страницы */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -6,8 +7,9 @@ body {
   color: #333;
 }
 
+/* Навигационная панель в стиле Facebook */
 .navbar {
-  background-color: #333;
+  background-color: #3b5998; /* Цвет Facebook */
   color: white;
   padding: 10px 20px;
 }
@@ -43,13 +45,15 @@ body {
   text-decoration: underline;
 }
 
+/* Заголовок страницы */
 header {
-  background-color: #444;
+  background-color: #3b5998;
   color: white;
   text-align: center;
   padding: 20px 0;
 }
 
+/* Основной контент */
 main {
   padding: 20px;
   max-width: 800px;
@@ -73,15 +77,7 @@ select {
   border-radius: 4px;
 }
 
-.service-history {
-  margin-top: 20px;
-  padding: 15px;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
+/* Стили для таблицы с сервисами */
 #servicesTable {
   margin-top: 20px;
   width: 100%;
@@ -98,10 +94,7 @@ th {
   background-color: #f4f4f9;
 }
 
-#service_info {
-  display: none;
-}
-
+/* Стили для гистограмм */
 #profitChartSection {
   display: grid;
   grid-template-columns: 1fr 1fr; /* Два столбца одинаковой ширины */
@@ -112,9 +105,11 @@ th {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center; /* Центрируем текст внутри контейнера */
 }
 
-.chart {
-  width: 100%; /* Ширина будет адаптироваться к контейнеру */
-  height: 300px; /* Высота графика */
+.chart-title {
+  margin-bottom: 10px; /* Добавим отступ снизу, чтобы текст не сливался с графиком */
+  font-size: 1.5em; /* Можно настроить размер текста */
+  font-weight: bold;
 }
