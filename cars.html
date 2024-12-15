@@ -3,10 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Car Filters</title>
     <link rel="stylesheet" href="static/css/cars.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script> 
+
 </head>
 <body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">CarInfo</a>
+            <ul class="nav-links">
+                <li><a href="#brand-history">History</a></li>
+                <li><a href="#price-table">Prices</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header>
+        <h1>Car Filters</h1>
+    </header>
+
+    <main>
+        <div class="filter">
+            <label for="car-brand">Select Car Brand:</label>
+            <select id="car-brand">
+                <option value="">-- Choose a Brand --</option>
+                <option value="toyota">Toyota</option>
+                <option value="bmw">BMW</option>
+                <option value="mercedes">Mercedes</option>
+                <option value="tesla">Tesla</option>
+            </select>
+        </div>
+
+        <div class="brand-history" id="brand-history">
+            <h2>Brand History</h2>
+            <p>Select a brand to see its history.</p>
+        </div>
+
+        <table class="price-table" id="price-table">
+            <thead>
+                <tr>
+                    <th>Model</th>
+                    <th>Release date</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="3">Select a brand to view prices.</td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+
     <script src="static/js/cars.js"></script>
 </body>
 </html>
