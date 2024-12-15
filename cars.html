@@ -6,7 +6,6 @@
     <title>Car Filters</title>
     <link rel="stylesheet" href="static/css/cars.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script> 
-
 </head>
 <body>
     <nav class="navbar">
@@ -28,11 +27,18 @@
             <label for="car-brand">Select Car Brand:</label>
             <select id="car-brand">
                 <option value="">-- Choose a Brand --</option>
-                <option value="toyota">Toyota</option>
-                <option value="bmw">BMW</option>
-                <option value="mercedes">Mercedes</option>
-                <option value="tesla">Tesla</option>
             </select>
+            <select id="car-model">
+                <option value="">-- Choose a Brand --</option>
+            </select>
+        </div>
+
+        <div class="car_info">
+            <p>Наименование авто: <b class="car_info__name"></b></p>
+            <p>Бренд авто: <b class="car_info__brand"></b></p>
+            <p>Год выпуска: <b class="car_info__realese"></b></p>
+            <p>Цена авто: <b class="car_info__price"></b></p>
+            <p>Описание авто: <b class="car_info__description"></b></p>
         </div>
 
         <div class="brand-history" id="brand-history">

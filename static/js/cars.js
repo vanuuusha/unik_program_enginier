@@ -7,22 +7,23 @@ const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 const carBrandSelect = document.getElementById("car-brand");
 const brandHistory = document.getElementById("brand-history");
 const priceTableBody = document.querySelector("#price-table tbody");
+const carModelSelect = document.querySelector("#car-model")
+const car_info = document.querySelector(".car-info");
 
 // Fetch and populate car brands
 async function fetchCarBrands() {
     try {
         const { data, error } = await supabaseClient
-            .from("cars")
-            .select("brand");
+            .from("brands")
+            .select("brand, history");
 
         if (error) throw error;
 
-        unique_brands = [...new Set(data.map(elem => elem.brand))]
         carBrandSelect.innerHTML = '<option value="">-- Choose a Brand --</option>';
-        unique_brands.forEach(elem => {
+        data.forEach(elem => {
             const option = document.createElement("option");
-            option.value = elem;
-            option.textContent = elem;
+            option.value = elem.brand;
+            option.textContent = elem.brand;
             carBrandSelect.appendChild(option);
         });
     } catch (error) {
@@ -30,56 +31,78 @@ async function fetchCarBrands() {
     }
 }
 
-// Fetch and display brand history and car details
-async function fetchCarDetails(brand) {
+async function fetchCarModels(brand) {
     try {
-        const { data: brandData, error: brandError } = await supabaseClient
-            .from("car_brands")
-            .select("description")
-            .eq("name", brand)
-            .single();
-
-        if (brandError) throw brandError;
-
-        brandHistory.innerHTML = `
-            <h2>${brand}</h2>
-            <p>${brandData.description || "No description available."}</p>
-        `;
-
-        const { data: carData, error: carError } = await supabaseClient
+        const { data, error } = await supabaseClient
             .from("cars")
-            .select("name, release_date, price")
+            .select("name")
             .eq("brand", brand);
 
-        if (carError) throw carError;
+        if (error) throw error;
 
-        priceTableBody.innerHTML = "";
-        carData.forEach(car => {
-            const row = document.createElement("tr");
-            row.innerHTML = `
-                <td>${car.name}</td>
-                <td>${car.release_date}</td>
-                <td>${car.price}</td>
-            `;
-            priceTableBody.appendChild(row);
+        carModelSelect.innerHTML = '<option value="">-- Choose a Model --</option>';
+        data.forEach(elem => {
+            const option = document.createElement("option");
+            option.value = elem.name;
+            option.textContent = elem.name;
+            carModelSelect.appendChild(option);
         });
     } catch (error) {
-        console.error("Error fetching car details:", error);
-        brandHistory.innerHTML = `<p>Error loading brand details.</p>`;
-        priceTableBody.innerHTML = `<tr><td colspan="3">Error loading prices.</td></tr>`;
+        console.error("Error fetching car models:", error);
     }
 }
 
-// Event Listener for brand selection
-// carBrandSelect.addEventListener("change", () => {
-//     const selectedBrand = carBrandSelect.value;
-//     if (selectedBrand) {
-//         fetchCarDetails(selectedBrand);
-//     } else {
-//         brandHistory.innerHTML = `<p>Select a brand to see its history.</p>`;
-//         priceTableBody.innerHTML = `<tr><td colspan="3">Select a brand to view prices.</td></tr>`;
-//     }
-// });
+async function fetchCarInfo(name) {
+    try {
+        const { data, error } = await supabaseClient
+            .from("cars")
+            .select("*")
+            .eq("name", name);
 
-// Initialize data on page load
+        if (error) throw error;
+
+        const car = data[0];
+        const name_block = car_info.querySelector('.car_info__name')
+        name_block.innerHTML = car.name;
+        
+        const brand_block = car_info.querySelector('.car_info__brand')
+        brand_block.innerHTML = car.brand;
+
+        const realese_block = car_info.querySelector('.car_info__realese')
+        realese_block.innerHTML = car.brand;
+
+        const price_block = car_info.querySelector('.car_info__price')
+        price_block.innerHTML = car.price;
+
+        const description_block = car_info.querySelector('.car_info__description')
+        description_block.innerHTML = car.brand;
+
+    } catch (error) {
+        console.error("Error fetching car models:", error);
+    }
+}
+
+carBrandSelect.addEventListener("change", (event) => {
+    const selectedBrand = event.target.value;
+    
+    if (selectedBrand) {
+        carModelSelect.style.display = "inline-block";
+        fetchCarModels(selectedBrand); 
+    } else {
+        carModelSelect.innerHTML = '<option value="">-- Choose a Model --</option>';
+    }
+});
+
+carModelSelect.addEventListener("change", (event) => {
+    const selectedModel = event.target.value;
+    
+    if (selectedModel) {
+        carModelSelect.style.display = "block";
+        fetchCarInfo(selectedModel); 
+    } else {
+        // carModelSelect.innerHTML = '<option value="">-- Choose a Model --</option>';
+    }
+});
+
+
 fetchCarBrands();

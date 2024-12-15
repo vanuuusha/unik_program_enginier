@@ -97,3 +97,12 @@ select {
 .price-table th {
     background-color: #f4f4f9;
 }
+
+#car-model {
+    display: none;
+    margin-top: 10px; /* Добавляем отступ сверху */
+}
+
+.car_info {
+    display: none;
+}
