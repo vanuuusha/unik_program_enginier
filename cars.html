@@ -7,29 +7,28 @@
     <link rel="stylesheet" href="assets/css/cars.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script> 
 </head>
-<body>
-    <nav class="navbar">
-        <div class="container">
-            <a href="index.html" class="logo">Home</a> <!-- Ссылка на главную страницу -->
-            <ul class="nav-links">
-                <li><a href="#brand-history">History</a></li>
-                <li><a href="#price-table">Prices</a></li>
-            </ul>
+<body class="page">
+    <header class="header">
+        <div class="page_header">
+            <h1 class="header_text">Car Filters</h1>
         </div>
-    </nav>
-
-    <header>
-        <h1>Car Filters</h1>
+        <nav class="navbar">
+            <ul>
+                <li class="navbar_elem"><a class="navbar_link" href="/">Home</a></li>
+                <li class="navbar_elem"><a class="navbar_link" href="service.html">Service</a></li>
+            </ul>
+        </nav>
+    
     </header>
 
-    <main>
+    <main class="page_content">
         <div class="filter">
-            <label for="car-brand">Select Car Brand:</label>
-            <select id="car-brand">
+            <label class="label" for="car-brand">Select car information:</label>
+            <select id="car-brand" class="select">
                 <option value="">-- Choose a Brand --</option>
             </select>
-            <select id="car-model">
-                <option value="">-- Choose a Brand --</option>
+            <select id="car-model" class="select">
+                <option value="">-- Choose a Model --</option>
             </select>
         </div>
 
@@ -42,7 +41,7 @@
         </div>
 
         <div>
-            <h2>Brand History</h2>
+            <h3 class="sub_header">Brand History:</h3>
             <p class="brand-history" id="brand-history">Select a brand to see its history.</p>
         </div>
 
@@ -54,14 +53,14 @@
                     <th>Price</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="table_body">
                 <tr>
                     <td colspan="3">Select a brand to view prices.</td>
                 </tr>
             </tbody>
         </table>
+        <img class="image">
     </main>
-
-    <script src="assets/js/cars.js"></script>
+        <script src="assets/js/cars.js"></script>
 </body>
 </html>

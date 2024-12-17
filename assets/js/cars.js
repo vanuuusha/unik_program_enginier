@@ -9,6 +9,7 @@ const brandHistory = document.getElementById("brand-history");
 const priceTableBody = document.querySelector("#price-table tbody");
 const carModelSelect = document.querySelector("#car-model")
 const car_info = document.querySelector("#car_info");
+const car_image = document.querySelector(".image");
 
 // Fetch and populate car brands
 async function fetchCarBrands() {
@@ -133,14 +134,16 @@ async function fetchAndPopulateTable(brand) {
     }
 }
 
-async function fetchBrandsHistory(brand) {
+async function fetchBrandsAndImageHistory(brand) {
     if (brand) {
         try {
-            const {data, error} = await supabaseClient.from("brands").select("history").eq('brand', brand);
+            const {data, error} = await supabaseClient.from("brands").select("history, link").eq('brand', brand);
             if (error) {
                 throw new Error(error.message);
             }
             brandHistory.innerHTML = data[0]['history']; 
+            car_image.style.display = 'block';
+            car_image.src = data[0]['link'];
         } catch (error) {
             console.error('Error fetching data:', error);
         }
@@ -157,13 +160,14 @@ carBrandSelect.addEventListener("change", (event) => {
         carModelSelect.style.display = "inline-block";
         fetchCarModels(selectedBrand); 
         fetchAndPopulateTable(selectedBrand);
-        fetchBrandsHistory(selectedBrand);
+        fetchBrandsAndImageHistory(selectedBrand);
     } else {
         carModelSelect.style.display = "none";
         carModelSelect.innerHTML = '<option value="">-- Choose a Model --</option>';
         car_info.style.display = "none";
+        car_image.style.display = "none";
         fetchAndPopulateTable();
-        fetchBrandsHistory();
+        fetchBrandsAndImageHistory();
     }
 });
 

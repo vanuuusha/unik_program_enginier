@@ -8,59 +8,59 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body>
+<body class="page">
     <!-- Навигационная панель -->
-    <nav class="navbar">
-        <div class="container">
-            <a href="index.html" class="logo">Home</a> <!-- Ссылка на главную страницу -->
-            <ul class="nav-links">
-                <li><a href="service.html">Services</a></li>
-            </ul>
+    <header class="header">
+        <div class="page_header">
+            <h1 class="header_text">Statistics for the selected service</h1>
         </div>
-    </nav>
-
-    <!-- Заголовок страницы -->
-    <header>
-        <h1>Статистика по выбранному сервису</h1>
+        <nav class="navbar">
+            <ul>
+                <li class="navbar_elem"><a class="navbar_link" href="/">Home</a></li>
+                <li class="navbar_elem"><a  class="navbar_link" href="cars.html">Cars</a></li>
+            </ul>
+        </nav>
+    
     </header>
 
-    <!-- Фильтры -->
-    <section>
-        <label for="serviceSelect">Выберите сервис:</label>
-        <select id="serviceSelect" >
-            <option value="">-- Выберите сервис --</option>
-            <!-- Список сервисов будет добавляться с помощью JavaScript -->
-        </select>
-    </section>
+    <main class="page_content">
+        <section>
+            <label class='label' for="serviceSelect">Select service:</label>
+            <select class="select" id="serviceSelect" >
+                <option value="">-- Choose a service --</option>
+                <!-- Список сервисов будет добавляться с помощью JavaScript -->
+            </select>
+        </section>
 
-    <!-- Таблица с сервисами -->
-    <section id="servicesTableSection">
-        <h2>Доступные сервисы</h2>
-        <table id="servicesTable">
-            <thead>
-                <tr>
-                    <th>Название</th>
-                    <th>Адрес</th>
-                    <th>Количество заказов</th>
-                    <th>Суммарная прибыль за год</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Данные о сервисах будут добавлены с помощью JavaScript -->
-            </tbody>
-        </table>
-    </section>
+        <!-- Таблица с сервисами -->
+        <section id="servicesTableSection">
+            <h2 class="sub_header">Avalible services</h2>
+            <table id="servicesTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Count orders</th>
+                        <th>Cummulutive year profit</th>
+                    </tr>
+                </thead>
+                <tbody class="table_body">
+                    <!-- Данные о сервисах будут добавлены с помощью JavaScript -->
+                </tbody>
+            </table>
+        </section>
 
-    <section id="profitChartSection">
-        <div class="hist_wrapper">
-            <h2 id="profit-chart-title" class="chart-title">Гистограмма прибыли</h2> <!-- Уникальный ID для заголовка -->
-            <canvas id="profit_hist" class="chart"></canvas>
-        </div>
-        <div class="hist_wrapper">
-            <h2 id="order-chart-title" class="chart-title">Гистограмма заказов</h2> <!-- Уникальный ID для заголовка -->
-            <canvas id="order_hist" class="chart"></canvas>
-        </div>
-    </section>
+        <section id="profitChartSection">
+            <div class="hist_wrapper">
+                <h3 id="profit-chart-title" class="chart-title">Profits hist</h3> <!-- Уникальный ID для заголовка -->
+                <canvas id="profit_hist" class="chart"></canvas>
+            </div>
+            <div class="hist_wrapper">
+                <h3 id="order-chart-title" class="chart-title">Orders hist</h3> <!-- Уникальный ID для заголовка -->
+                <canvas id="order_hist" class="chart"></canvas>
+            </div>
+        </section>
+    </main>
 
     <script src="assets/js/service.js"></script>
 </body>

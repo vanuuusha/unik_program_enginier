@@ -9,6 +9,7 @@ const serviceHistory = document.getElementById("service-history");
 const serviceTableBody = document.querySelector("#servicesTable tbody");
 const profit_hist = document.querySelector("#profit_hist");
 const order_hist = document.querySelector("#order_hist");
+const charts_titles = document.querySelectorAll('.chart-title')
 let charts = [];
 
 async function fetchServices() {
@@ -19,7 +20,7 @@ async function fetchServices() {
 
         if (error) throw error;
 
-        serviceSelect.innerHTML = '<option value="">-- Выберите сервис --</option>';
+        serviceSelect.innerHTML = '<option value="">-- Choose a service --</option>';
         data.forEach(service => {
             const option = document.createElement("option");
             option.value = service.id;
@@ -90,8 +91,8 @@ function draw_hist(data, html_tag) {
             label: 'Значения',
             data: data, // Массив данных для гистограммы
             backgroundColor: gradient, // Цвет заливки столбцов
-            borderColor: 'rgba(54, 162, 235, 1)', // Цвет границ столбцов
-            borderWidth: 1
+            borderColor: 'rgba(0, 0, 0, 1)', // Цвет границ столбцов
+            borderWidth: 2
           }]
         },
         options: {
@@ -99,6 +100,12 @@ function draw_hist(data, html_tag) {
             scales: {
                 x: {
                     ticks: {
+                        color: '#000', // Цвет меток оси X (tomato)
+                        font: {
+                            size: 16, // Размер шрифта меток на оси X
+                            family: 'Arial', // Шрифт меток оси X
+                            weight: 'bold' // Жирный шрифт
+                        },
                         autoSkip: false, // Запрещаем пропуск меток на оси X
                         maxRotation: 45, // Ограничиваем максимальный угол поворота
                         minRotation: 45, // Устанавливаем угол поворота для всех меток
@@ -109,6 +116,14 @@ function draw_hist(data, html_tag) {
                 },
                 y: {
                     beginAtZero: true, // Начинаем ось Y с нуля
+                    ticks: {
+                        color: '#000', // Цвет меток оси X (tomato)
+                        font: {
+                            size: 16, // Размер шрифта меток на оси X
+                            family: 'Arial', // Шрифт меток оси X
+                            weight: 'bold' // Жирный шрифт
+                        },
+                    }
                 }
             },
             // Автоматическое масштабирование столбцов
@@ -171,8 +186,11 @@ serviceSelect.addEventListener("change", (event) => {
     if (serviceId) {
         clear_hist();
         draw_hist_wrapper(serviceId);
+        console.log(charts_titles)
+        charts_titles.forEach((chart) => {chart.style.display = "inline-block"});
     } else {
         clear_hist();
+        charts_titles.forEach((chart) => {chart.style.display = "none"});
     }
 });
 

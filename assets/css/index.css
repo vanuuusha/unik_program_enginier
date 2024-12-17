@@ -1,19 +1,71 @@
 /* Общие стили */
-body {
-    font-family: 'Arial', sans-serif; /* Шрифт, похожий на Facebook */
-    background-color: #f7f7f7; /* Светлый фон для страницы */
+.page {
+    background-color: #f7f7f7; /* Светлый фон */
     color: #1c1e21; /* Темный цвет текста */
     margin: 0;
     padding: 0;
+    font-family: system-ui;
 }
 
-/* Навигационная панель */
-nav {
-    background-color: #3b5998; /* Темно-синий фон */
+
+/* Навигационная панель с градиентом */ 
+.header {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+
+    background: linear-gradient(to right, #1a1a1a, #4d4d4d);
+    animation: gradientAnimation 4s infinite alternate;
+    background-size: 400% 400%; 
+}
+
+.page_header {
+    grid-column: 1 / 2; 
+    justify-self: start;
+    color: white;
+    text-align: center;
+    padding: 20px 30px;
+}
+
+.header_text {
+    margin: 0;
+    font-size: 2em;
+}
+
+.footer {
+    text-align: center;
+    background: linear-gradient(to right, #1a1a1a, #4d4d4d);
+    padding: 20px;
+    color: white;
+    animation: gradientAnimation 4s infinite alternate;
+}
+
+.footer p {
+    margin: 0;
+}
+
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.navbar {
+    grid-column: 2 / 3; /* Вторая колонка */
+    justify-self: center; 
     padding: 10px 20px;
+    animation: gradientAnimation 5s infinite alternate;
+    background-size: 400% 400%; 
 }
 
-nav ul {
+.navbar ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -21,19 +73,21 @@ nav ul {
     justify-content: center;
 }
 
-nav ul li {
+.navbar .navbar_elem {
     margin: 0 15px;
 }
 
-nav a {
+.navbar .navbar_link {
     color: #ffffff; /* Белый цвет текста */
     text-decoration: none;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: bold;
+    transition: color 0.5s ease; 
 }
 
-nav a:hover {
+.navbar .navbar_link:hover {
     text-decoration: underline; /* Подчеркивание при наведении */
+    color: #ffcc00;
 }
 
 /* Основной контейнер */
@@ -47,76 +101,41 @@ nav a:hover {
     margin-top: 20px;
 }
 
-/* Заголовки */
-h1, h2 {
-    color: #3b5998; /* Темно-синий для заголовков */
-}
-
-h2 {
-    margin-top: 20px;
-    font-size: 24px;
-    font-weight: 600;
-}
 
 /* Списки */
-ol, ul {
+.list {
     margin: 10px 0;
     padding-left: 20px;
 }
 
-ul {
-    list-style-type: disc;
+.sub_header {
+    font-family: cursive;
+    font-size: 20px;
 }
 
-ol {
-    list-style-type: upper-roman;
-}
 
-/* Стили для таблиц */
-.definition-table {
+.table {
+    margin-top: 20px;
     width: 100%;
     border-collapse: collapse;
-    margin: 20px 0;
-    font-size: 14px;
-    color: #1c1e21;
+    background-color: #cccaca;
+}
+
+.table th, .table td {
+    border: 1px solid #000;
+    padding: 8px;
     text-align: left;
-    background-color: #ffffff;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    border-radius: 8px;
 }
 
-.definition-table thead th {
-    background-color: #dfe3ee; /* Светло-серый фон */
-    padding: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    border-bottom: 1px solid #ccc;
-}
-
-.definition-table tbody td {
-    padding: 10px 12px;
-    border-bottom: 1px solid #ddd;
-    vertical-align: middle;
-}
-
-.definition-table tbody tr:hover {
+.table_body tr:hover {
     background-color: #f0f2f5;
 }
 
-.definition-table tbody tr:last-child td {
-    border-bottom: none;
-}
-
-/* Подвал */
-footer {
-    text-align: center;
+.page_content  {
     padding: 20px;
-    background-color: #3b5998; /* Темно-синий фон */
-    color: white;
-    font-size: 14px;
-}
-
-footer p {
-    margin: 0;
+    max-width: 95%;
+    margin: 20px auto;
+    background-image: url("https://sneg.top/uploads/posts/2023-03/1678447960_sneg-top-p-oboi-dlya-rabochego-stola-beloe-s-serim-vk-37.jpg");
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); /* Тень */
+    border-radius: 8px;
 }

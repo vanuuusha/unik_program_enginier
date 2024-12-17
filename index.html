@@ -5,26 +5,30 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>About the Project</title>
-        <link rel="stylesheet" href="assets/css/index.css"> <!-- Новый стиль -->
+        <link rel="stylesheet" href="assets/css/index.css">
+        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script> 
     </head>
     
-<body>
-
-    <!-- Navigation Bar -->
-    <nav>
-        <ul>
-            <li><a href="cars.html">Cars</a></li>
-            <li><a href="service.html">Service</a></li>
-        </ul>
-    </nav>
+<body class="page">
+    <header class="header">
+        <div class="page_header">
+            <h1 class="header_text">Home</h1>
+        </div>
+        <nav class="navbar">
+            <ul>
+                <li class="navbar_elem"><a class="navbar_link" href="service.html">Service stats</a></li>
+                <li class="navbar_elem"><a  class="navbar_link" href="cars.html">Cars</a></li>
+            </ul>
+        </nav>
+    
+    </header>
 
     <!-- Content for the About the Project Page -->
-    <div id="about">
-        <h1>About the Project</h1>
-        <p>Welcome to our car service project! This website is dedicated to providing detailed information about cars and their services. Below is a brief description of what you can find on our platform:</p>
+    <div class="page_content">
+        <b>Welcome to our car service project! This website is dedicated to providing detailed information about cars and their services. Below is a brief description of what you can find on our platform:</b>
         
-        <h2>Key Car Brands</h2>
-        <ol type="I">
+        <h2 class="sub_header">Key Car Brands</h2>
+        <ol class="list" type="I">
             <li>BMW - Known for its luxury vehicles and cutting-edge technology.</li>
             <li>Toyota - Renowned for its reliability and hybrid innovations.</li>
             <li>Ford - An American icon in SUVs and trucks.</li>
@@ -33,7 +37,7 @@
         </ol>
 
         <h2>Popular Car Models</h2>
-        <ol type="1">
+        <ol class="list"  type="1">
             <li>BMW i8 - An eco-friendly electric vehicle with advanced features.</li>
             <li>Tesla Model S - Luxury and cutting-edge technology combined.</li>
             <li>Toyota Camry - Known for efficiency and reliability.</li>
@@ -41,16 +45,16 @@
             <li>Mercedes GLA - Compact, luxurious, and performance-oriented.</li>
         </ol>
 
-        <h2>Services We Offer</h2>
-        <ul style="list-style-type: square;">
+        <h2 class="sub_header">Services We Offer</h2>
+        <ul class="list"  style="list-style-type: square;">
             <li>Auto repair and maintenance services.</li>
             <li>Car diagnostics and inspection.</li>
             <li>Spare parts replacement and upgrades.</li>
             <li>24/7 roadside assistance and support.</li>
         </ul>
 
-        <h2>Top Service Centers</h2>
-        <ul style="list-style-type: disc;">
+        <h2 class="sub_header">Top Service Centers</h2>
+        <ul  class="list" style="list-style-type: disc;">
             <li>Afto-сервис - Located in Moscow, known for excellent customer service.</li>
             <li>Winauto - Based in St. Petersburg with a focus on modern car maintenance.</li>
             <li>Fit Service - A trusted name in Ekaterinburg for over a decade.</li>
@@ -59,51 +63,29 @@
         </ul>
 
         <!-- Definition Lists -->
-        <h2>Car Brands and Highlights</h2>
-        <table class="definition-table">
+        <h2 class="sub_header">Car Brands and Highlights</h2>
+        <table class="table" id="brands-table">
             <thead>
-                <tr>
+                <tr class="table_body">
                     <th>Brand</th>
                     <th>Description</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>BMW</td>
-                    <td>A German luxury automobile brand known for performance and innovation.</td>
-                </tr>
-                <tr>
-                    <td>Tesla</td>
-                    <td>An American pioneer in electric vehicles and self-driving technologies.</td>
-                </tr>
-                <tr>
-                    <td>Mercedes</td>
-                    <td>Iconic for its luxury and safety advancements in the automobile industry.</td>
-                </tr>
+            <tbody class="table_body">
+
             </tbody>
         </table>
         
-        <h2>Service Center Descriptions</h2>
-        <table class="definition-table">
+        <h2 class="sub_header">Service Center Descriptions</h2>
+        <table class="table" id="service-table">
             <thead>
-                <tr>
+                <tr class="table_body">
                     <th>Service Center</th>
                     <th>Description</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>Afto-сервис</td>
-                    <td>Located in Moscow, specializing in premium car repairs and diagnostics.</td>
-                </tr>
-                <tr>
-                    <td>Fit Service</td>
-                    <td>A popular choice in Ekaterinburg, offering reliable maintenance and quick service.</td>
-                </tr>
-                <tr>
-                    <td>М Сервис</td>
-                    <td>Based in Kazan, known for affordable prices and a wide range of services.</td>
-                </tr>
+            <tbody class="table_body">
+
             </tbody>
         </table>
         
@@ -112,9 +94,9 @@
         <p>Our platform combines accurate data and interactive tools to give you a comprehensive experience. Whether you're here to learn about cars or manage your vehicle's service, we've got you covered!</p>
     </div>
 
-    <footer>
+    <footer class="footer">
         <p>&copy; 2024 Car Service Project. All rights reserved.</p>
     </footer>
-
+    <script src="assets/js/index.js"></script>
 </body>
 </html>
